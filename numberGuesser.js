@@ -8,7 +8,7 @@
 // Game Values
 let min = 1,
     max = 10,
-    winningNumber = Math.floor(Math.random() * 11),
+    winningNumber = getWinningNumber(max, min), //hoisting helped here since the function declaration is after we call the function
     remainingGuesses = 4;
 
 const numberGuesserView = {
@@ -20,6 +20,9 @@ const numberGuesserView = {
         guessButton: document.querySelector('#guess-btn'),
         guessInput: document.querySelector('#guess-input'),
         message: document.querySelector('.message'),
+    },
+    getWinningNumber(max, min) {
+        return Math.floor(Math.random() * (max - min+1) + min);
     },
     guessButtonListener () {
         numberGuesserView.elements.guessButton.addEventListener('click', () => {
