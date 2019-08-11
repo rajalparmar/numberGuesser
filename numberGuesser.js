@@ -8,7 +8,7 @@
 // Game Values
 let min = 1,
     max = 10,
-    winningNumber = getWinningNumber(max, min), //hoisting helped here since the function declaration is after we call the function
+    winningNumber,
     remainingGuesses = 4;
 
 const numberGuesserView = {
@@ -22,7 +22,7 @@ const numberGuesserView = {
         message: document.querySelector('.message'),
     },
     getWinningNumber(max, min) {
-        return Math.floor(Math.random() * (max - min+1) + min);
+        return Math.floor(Math.random() * (max-min+1)+min);
     },
     guessButtonListener () {
         numberGuesserView.elements.guessButton.addEventListener('click', () => {
@@ -45,6 +45,7 @@ const numberGuesserView = {
         let won = true;
         let disableInput = true;
         let message;
+        winningNumber = numberGuesserView.getWinningNumber(min, max);
 
         if (isNaN(guess) || guess < min || guess > max) {
             return numberGuesserView.setMessage(`Please enter a number between ${min} and ${max}`, 'red');
